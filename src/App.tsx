@@ -8,6 +8,8 @@ import { AuditArchive } from './views/AuditArchive'
 
 function Shell() {
   const reset = useClaimStore((state) => state.reset)
+  const simulateNextWriteFail = useClaimStore((state) => state.simulateNextWriteFail)
+  const toggleSimulateFail = useClaimStore((state) => state.toggleSimulateFail)
   const review = useClaimStore((state) => state.claims.filter((item) => item.status === '待编辑复核').length)
   return <Flex minH="100vh">
     <Box position="fixed" w="238px" inset="0 auto 0 0" bg="#17342f" color="white" px="4" py="5">
@@ -20,6 +22,7 @@ function Shell() {
       </VStack>
       <Box position="absolute" bottom="5" left="4" right="4" bg="blackAlpha.300" p="3">
         <Text fontSize="xs" color="whiteAlpha.600">当前角色</Text><Text fontSize="sm" mt="1">事实核查员 陆衡</Text><Text fontSize="xs" color="whiteAlpha.500" mt="1">争议证据不得被覆盖</Text>
+        <Box as="button" mt="3" w="100%" textAlign="left" px="2" py="2" borderRadius="4px" bg={simulateNextWriteFail ? '#c79c39' : 'whiteAlpha.200'} color={simulateNextWriteFail ? '#17342f' : 'whiteAlpha.800'} fontSize="xs" onClick={toggleSimulateFail}>{simulateNextWriteFail ? '● 写入故障注入已开启' : '○ 模拟下一次写入失败'}</Box>
       </Box>
     </Box>
     <Box ml="238px" flex="1" minW="0">
