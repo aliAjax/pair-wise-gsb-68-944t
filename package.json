@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --port 18468",
     "build": "tsc --noEmit -p tsconfig.app.json && vite build",
-    "preview": "vite preview --port 18468"
+    "preview": "vite preview --port 18468",
+    "test": "node build-test.mjs && node test/test-bundle.cjs"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.10.4",
